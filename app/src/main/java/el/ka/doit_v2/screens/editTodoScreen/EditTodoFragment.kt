@@ -41,7 +41,6 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo) {
             }
         }
     }
-
     private fun addTodo(currentTodoText: String) {
         viewModel.addTodo(
             TodoModel(text = currentTodoText)

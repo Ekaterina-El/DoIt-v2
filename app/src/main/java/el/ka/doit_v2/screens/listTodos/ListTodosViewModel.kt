@@ -15,9 +15,7 @@ class ListTodosViewModel: ViewModel() {
 
     fun deleteTodo(todoModel: TodoModel) {
         viewModelScope.launch(Dispatchers.IO) {
-            REPOSITORY.delete(todoModel) {
-                Toast.makeText(APP, "Todo '${todoModel.text} was deleted'", Toast.LENGTH_SHORT).show()
-            }
+            REPOSITORY.delete(todoModel) {}
         }
     }
     fun updateTodo(todoModel: TodoModel) {
@@ -28,7 +26,7 @@ class ListTodosViewModel: ViewModel() {
 
     fun deleteAllTodos() {
         viewModelScope.launch(Dispatchers.IO) {
-            REPOSITORY.deleteAllTodos {  }
+            REPOSITORY.deleteAllTodos {}
         }
     }
 }
