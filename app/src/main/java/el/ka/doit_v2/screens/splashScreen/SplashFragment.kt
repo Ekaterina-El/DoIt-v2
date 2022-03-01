@@ -15,6 +15,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
+        viewModel.initDatabase()
         viewModel.hiddenSplashFragment()
     }
 }
