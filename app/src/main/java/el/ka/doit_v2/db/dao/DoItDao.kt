@@ -14,4 +14,7 @@ interface DoItDao {
 
     @Query("SELECT * FROM todos_table")
     fun getAllTodos(): LiveData<List<TodoModel>>
+
+    @Update
+    fun updateTodo(todoModel: TodoModel)
 }

@@ -13,4 +13,10 @@ class EditTodoViewModel : ViewModel() {
             REPOSITORY.insert(todoModel) {}
         }
     }
+
+    fun updateTodo(todoModel: TodoModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.editTodo(todoModel) {}
+        }
+    }
 }

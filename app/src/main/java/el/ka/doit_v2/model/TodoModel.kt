@@ -11,8 +11,8 @@ data class TodoModel(
     val id: Int = 0,
 
     @ColumnInfo
-    val text: String = "",
+    var text: String = "",
 
     @ColumnInfo
-    val isDone: Boolean = false,
+    var isDone: Boolean = false,
 ): Serializable

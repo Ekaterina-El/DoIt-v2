@@ -40,6 +40,9 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
             },
             onEditTodo = { todoModel ->
                 onEditTodo(todoModel)
+            },
+            onChangeTodo = { todoModel ->
+                viewModel.updateTodo(todoModel)
             }
         )
         this.recyclerToDoList.adapter = adapter

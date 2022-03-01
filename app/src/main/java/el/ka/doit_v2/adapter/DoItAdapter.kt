@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.todo_item.view.*
 class DoItAdapter(
     private val onDeleteTodo: (TodoModel) -> Unit,
     private val onEditTodo: (TodoModel) -> Unit,
+    private val onChangeTodo: (TodoModel) -> Unit,
 
     ) : RecyclerView.Adapter<DoItAdapter.TodoViewHolder>() {
     inner class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -34,6 +35,10 @@ class DoItAdapter(
         val todoModel = todos[holder.adapterPosition]
         holder.itemView.editTask.setOnClickListener { onEditTodo(todoModel) }
         holder.itemView.deleteTask.setOnClickListener { onDeleteTodo(todoModel) }
+        holder.itemView.taskCheckbox.setOnCheckedChangeListener { _, status ->
+            todoModel.isDone = status
+            onChangeTodo(todoModel)
+        }
     }
 
     override fun onViewDetachedFromWindow(holder: TodoViewHolder) {

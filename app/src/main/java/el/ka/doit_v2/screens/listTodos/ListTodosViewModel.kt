@@ -20,4 +20,9 @@ class ListTodosViewModel: ViewModel() {
             }
         }
     }
+    fun updateTodo(todoModel: TodoModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.editTodo(todoModel) {}
+        }
+    }
 }

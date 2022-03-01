@@ -17,4 +17,10 @@ class DoItRealisation(private val doItDao: DoItDao): DoItRepository {
         doItDao.delete(todoModel)
         onSuccess()
     }
+
+    override suspend fun editTodo(todoModel: TodoModel, onSuccess: () -> Unit) {
+        doItDao.updateTodo(todoModel)
+        onSuccess()
+    }
+
 }

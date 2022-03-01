@@ -2,7 +2,6 @@ package el.ka.doit_v2.screens.editTodoScreen
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import el.ka.doit_v2.APP
@@ -22,7 +21,6 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo) {
         findCurrentTodoModel()
         initViewModel()
         addListeners()
-        //Toast.makeText(APP, "IsEdit: $isEdit", Toast.LENGTH_SHORT).show()
     }
 
     private fun addListeners() {
@@ -38,16 +36,21 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo) {
         this.saveTaskBtn.setOnClickListener {
             val currentTodoText = this.taskText.text.toString()
             if (currentTodoText != "") {
-                if (isEdit) {
-                    // updateTodo
-                } else {
-                    viewModel.addTodo(
-                        TodoModel(text = currentTodoText)
-                    )
-                }
+                if (isEdit) editTodo(currentTodoText) else addTodo(currentTodoText)
                 APP.navController.navigateUp()
             }
         }
+    }
+
+    private fun addTodo(currentTodoText: String) {
+        viewModel.addTodo(
+            TodoModel(text = currentTodoText)
+        )
+    }
+
+    private fun editTodo(currentTodoText: String) {
+        currentTodoModel.text = currentTodoText
+        viewModel.updateTodo(currentTodoModel)
     }
 
     private fun initViewModel() {
