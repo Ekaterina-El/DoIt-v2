@@ -55,6 +55,10 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
         this.deleteAllTodosBtn.setOnClickListener {
             viewModel.deleteAllTodos()
         }
+
+        this.empty_box_add_task.setOnClickListener {
+            viewModel.addTodo(TodoModel(text = filterString))
+        }
     }
 
     private fun initRecyclerView() {
@@ -89,8 +93,15 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
                 todoModel.text.contains(filterString, true)
             }
             currentTodos = filteredTodos
+
+            if (filteredTodos.isEmpty()) {
+                this.empty_box_add_task.visibility = View.VISIBLE
+            } else {
+                this.empty_box_add_task.visibility = View.INVISIBLE
+            }
         } else {
             currentTodos = allTodos
+            this.empty_box_add_task.visibility = View.INVISIBLE
         }
 
         this.emptyTodo.visibility = if (currentTodos.isEmpty()) View.VISIBLE else View.INVISIBLE

@@ -29,4 +29,10 @@ class ListTodosViewModel: ViewModel() {
             REPOSITORY.deleteAllTodos {}
         }
     }
+
+    fun addTodo(todoModel: TodoModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.insert(todoModel) {}
+        }
+    }
 }

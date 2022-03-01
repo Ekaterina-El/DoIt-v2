@@ -102,6 +102,16 @@
             android:text="@string/todo_list_empty"
             android:textColor="@color/gray2"
             android:textSize="18sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/empty_box_add_task"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/emptyText"
+            android:layout_height="wrap_content"
+            android:text="Add this todo"
+            android:textAllCaps="false" />
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
