@@ -14,8 +14,6 @@
     <string name="new_task_save">Save</string>
     <string name="preloader_text">Loading</string>
 
-    <string name="todo_list_empty">Your to-do list is empty</string>
+    <string name="todo_list_empty">Not found todos</string>
     <string name="todo_list_empty_search">No results were found for your search.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

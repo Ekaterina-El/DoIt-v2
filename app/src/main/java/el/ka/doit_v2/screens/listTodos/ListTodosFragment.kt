@@ -2,6 +2,7 @@ package el.ka.doit_v2.screens.listTodos
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import el.ka.doit_v2.APP
@@ -56,6 +57,8 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
 
     private fun addObserverForTodos() {
         viewModel.getAllNotes().observe(viewLifecycleOwner) { listTodos ->
+            this.emptyTodo.visibility = if (listTodos.isEmpty()) View.VISIBLE else View.INVISIBLE
+            Toast.makeText(APP, "Size: ${listTodos.size}", Toast.LENGTH_SHORT).show()
             adapter.setTodos(listTodos)
         }
     }
