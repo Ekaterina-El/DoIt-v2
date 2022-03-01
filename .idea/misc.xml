@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DoItv2/app/src/main/res/drawable/done_all.xml" value="0.257" />
         <entry key="..\:/DoItv2/app/src/main/res/drawable/field.xml" value="0.2265" />
         <entry key="..\:/DoItv2/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2265" />
         <entry key="..\:/DoItv2/app/src/main/res/drawable/ic_baseline_delete_outline_18.xml" value="0.2265" />
@@ -10,8 +11,10 @@
         <entry key="..\:/DoItv2/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.2265" />
         <entry key="..\:/DoItv2/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2265" />
         <entry key="..\:/DoItv2/app/src/main/res/drawable/todo_item.xml" value="0.2265" />
+        <entry key="..\:/DoItv2/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/DoItv2/app/src/main/res/layout/fragment_list_todo.xml" value="0.11302083333333333" />
         <entry key="..\:/DoItv2/app/src/main/res/layout/fragment_list_todos.xml" value="0.264" />
+        <entry key="..\:/DoItv2/app/src/main/res/layout/fragment_splash.xml" value="0.264" />
         <entry key="..\:/DoItv2/app/src/main/res/layout/todo_item.xml" value="0.25416666666666665" />
       </map>
     </option>
