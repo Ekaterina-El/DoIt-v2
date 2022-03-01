@@ -3,6 +3,7 @@ package el.ka.doit_v2.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "todos_table")
 data class TodoModel(
@@ -14,4 +15,4 @@ data class TodoModel(
 
     @ColumnInfo
     val isDone: Boolean = false,
-)
+): Serializable

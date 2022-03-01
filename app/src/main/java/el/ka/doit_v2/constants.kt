@@ -4,3 +4,5 @@ import el.ka.doit_v2.db.repository.DoItRepository
 
 lateinit var APP: MainActivity
 lateinit var REPOSITORY: DoItRepository
+
+const val TODO_KEY = "todo"

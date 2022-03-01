@@ -4,19 +4,17 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import el.ka.doit_v2.APP
 import el.ka.doit_v2.R
 import el.ka.doit_v2.model.TodoModel
 import kotlinx.android.synthetic.main.todo_item.view.*
 
 class DoItAdapter(
-    private val onDeleteTodo: (TodoModel) -> Unit
-): RecyclerView.Adapter<DoItAdapter.TodoViewHolder>() {
-    inner class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val onDeleteTodo: (TodoModel) -> Unit,
+    private val onEditTodo: (TodoModel) -> Unit,
 
-    }
+    ) : RecyclerView.Adapter<DoItAdapter.TodoViewHolder>() {
+    inner class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private var todos = listOf<TodoModel>()
 
@@ -33,15 +31,9 @@ class DoItAdapter(
     override fun onViewAttachedToWindow(holder: TodoViewHolder) {
         super.onViewAttachedToWindow(holder)
 
-        val todo = todos[holder.adapterPosition]
-
-        holder.itemView.editTask.setOnClickListener {
-            Toast.makeText(APP, "Edit: ${todos[holder.adapterPosition].text}", Toast.LENGTH_SHORT).show()
-        }
-
-        holder.itemView.deleteTask.setOnClickListener {
-            onDeleteTodo(todo)
-        }
+        val todoModel = todos[holder.adapterPosition]
+        holder.itemView.editTask.setOnClickListener { onEditTodo(todoModel) }
+        holder.itemView.deleteTask.setOnClickListener { onDeleteTodo(todoModel) }
     }
 
     override fun onViewDetachedFromWindow(holder: TodoViewHolder) {

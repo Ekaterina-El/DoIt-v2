@@ -18,5 +18,14 @@
         android:id="@+id/listTodosFragment"
         android:name="el.ka.doit_v2.screens.listTodos.ListTodosFragment"
         android:label="fragment_list_todos"
-        tools:layout="@layout/fragment_list_todos" />
+        tools:layout="@layout/fragment_list_todos" >
+        <action
+            android:id="@+id/action_listTodosFragment_to_editTodoFragment"
+            app:destination="@id/editTodoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="el.ka.doit_v2.screens.editTodoScreen.EditTodoFragment"
+        android:label="fragment_edit_todo"
+        tools:layout="@layout/fragment_edit_todo" />
 </navigation>
