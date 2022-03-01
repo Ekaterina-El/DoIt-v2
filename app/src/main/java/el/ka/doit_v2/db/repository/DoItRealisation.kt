@@ -23,4 +23,9 @@ class DoItRealisation(private val doItDao: DoItDao): DoItRepository {
         onSuccess()
     }
 
+    override suspend fun deleteAllTodos(onSuccess: () -> Unit) {
+        doItDao.deleteAllTodos()
+        onSuccess()
+    }
+
 }

@@ -16,5 +16,8 @@ interface DoItDao {
     fun getAllTodos(): LiveData<List<TodoModel>>
 
     @Update
-    fun updateTodo(todoModel: TodoModel)
+    suspend fun updateTodo(todoModel: TodoModel)
+
+    @Query("DELETE FROM todos_table")
+    suspend fun deleteAllTodos()
 }

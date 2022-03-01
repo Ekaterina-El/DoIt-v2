@@ -25,4 +25,10 @@ class ListTodosViewModel: ViewModel() {
             REPOSITORY.editTodo(todoModel) {}
         }
     }
+
+    fun deleteAllTodos() {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.deleteAllTodos {  }
+        }
+    }
 }

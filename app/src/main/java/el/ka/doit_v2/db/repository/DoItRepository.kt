@@ -9,4 +9,5 @@ interface DoItRepository {
     suspend fun insert(todoModel: TodoModel, onSuccess: () -> Unit)
     suspend fun delete(todoModel: TodoModel, onSuccess: () -> Unit)
     suspend fun editTodo(todoModel: TodoModel, onSuccess: () -> Unit)
+    suspend fun deleteAllTodos(onSuccess: () -> Unit)
 }

@@ -31,6 +31,10 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
         this.fab.setOnClickListener {
             APP.navController.navigate(R.id.action_listTodosFragment_to_editTodoFragment)
         }
+
+        this.deleteAllTodosBtn.setOnClickListener {
+            viewModel.deleteAllTodos()
+        }
     }
 
     private fun initRecyclerView() {
