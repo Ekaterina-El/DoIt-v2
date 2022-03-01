@@ -11,7 +11,9 @@ import el.ka.doit_v2.R
 import el.ka.doit_v2.model.TodoModel
 import kotlinx.android.synthetic.main.todo_item.view.*
 
-class DoItAdapter: RecyclerView.Adapter<DoItAdapter.TodoViewHolder>() {
+class DoItAdapter(
+    private val onDeleteTodo: (TodoModel) -> Unit
+): RecyclerView.Adapter<DoItAdapter.TodoViewHolder>() {
     inner class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
@@ -31,12 +33,14 @@ class DoItAdapter: RecyclerView.Adapter<DoItAdapter.TodoViewHolder>() {
     override fun onViewAttachedToWindow(holder: TodoViewHolder) {
         super.onViewAttachedToWindow(holder)
 
+        val todo = todos[holder.adapterPosition]
+
         holder.itemView.editTask.setOnClickListener {
             Toast.makeText(APP, "Edit: ${todos[holder.adapterPosition].text}", Toast.LENGTH_SHORT).show()
         }
 
         holder.itemView.deleteTask.setOnClickListener {
-            Toast.makeText(APP, "Delete: ${todos[holder.adapterPosition].text}", Toast.LENGTH_SHORT).show()
+            onDeleteTodo(todo)
         }
     }
 

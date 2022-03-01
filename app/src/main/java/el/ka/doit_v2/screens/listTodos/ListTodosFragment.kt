@@ -19,7 +19,10 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
 
         val viewModel = ViewModelProvider(this).get(ListTodosViewModel::class.java)
 
-        adapter = DoItAdapter()
+        adapter = DoItAdapter(
+            onDeleteTodo = { todoModel ->
+                viewModel.deleteTodo(todoModel)
+            })
         this.recyclerToDoList.adapter = adapter
 
         viewModel.getAllNotes().observe(viewLifecycleOwner) { listTodos ->
