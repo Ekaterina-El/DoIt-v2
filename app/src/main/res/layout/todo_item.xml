@@ -12,6 +12,7 @@
     app:cardCornerRadius="8dp" >
 
     <LinearLayout
+        android:id="@+id/wrapper"
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,11 +23,11 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/mainColor"
+            android:buttonTint="@color/black2"
             android:textSize="16sp"
             android:paddingStart="8dp"
             android:text="@string/example_text_task_item"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/black2"
 
             />
 

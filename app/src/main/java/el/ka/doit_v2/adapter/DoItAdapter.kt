@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import el.ka.doit_v2.APP
 import el.ka.doit_v2.R
+import el.ka.doit_v2.colors
 import el.ka.doit_v2.model.TodoModel
 import kotlinx.android.synthetic.main.todo_item.view.*
 
@@ -27,6 +29,7 @@ class DoItAdapter(
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.itemView.taskCheckbox.text = todos[position].text
         holder.itemView.taskCheckbox.isChecked = todos[position].isDone
+        holder.itemView.wrapper.setBackgroundColor(APP.getColor(colors[todos[position].colorNumber]))
     }
 
     override fun onViewAttachedToWindow(holder: TodoViewHolder) {

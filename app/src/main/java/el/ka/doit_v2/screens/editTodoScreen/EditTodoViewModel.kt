@@ -8,6 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class EditTodoViewModel : ViewModel() {
+    var currentColorNumber: Int = 0
+
     fun addTodo(todoModel: TodoModel) {
         viewModelScope.launch(Dispatchers.IO) {
             REPOSITORY.insert(todoModel) {}

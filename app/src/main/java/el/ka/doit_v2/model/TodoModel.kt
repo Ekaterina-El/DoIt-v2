@@ -15,4 +15,7 @@ data class TodoModel(
 
     @ColumnInfo
     var isDone: Boolean = false,
+
+    @ColumnInfo
+    var colorNumber: Int = 0
 ): Serializable

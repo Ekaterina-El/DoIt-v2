@@ -1,13 +1,14 @@
 package el.ka.doit_v2.db
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import el.ka.doit_v2.db.dao.DoItDao
 import el.ka.doit_v2.model.TodoModel
 
-@Database(entities = [TodoModel::class], version = 1)
+@Database(entities = [TodoModel::class], version = 2)
 abstract class DoItDatabase: RoomDatabase() {
     abstract fun getDoItDao(): DoItDao
 

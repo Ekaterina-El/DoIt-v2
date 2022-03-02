@@ -14,4 +14,11 @@
     <color name="gray">#D3DFBA</color>
     <color name="gray2">#B5C397</color>
     <color name="preloader">#990000</color>
+
+    <color name="c0">#FFEA34</color>
+    <color name="c1">#8BC34A</color>
+    <color name="c2">#FF68DE</color>
+    <color name="c3">#D364FC</color>
+    <color name="c4">#00BCD4</color>
+    <color name="c5">#DADADA</color>
 </resources>
