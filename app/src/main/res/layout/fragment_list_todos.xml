@@ -1,130 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".presentation.screens.listTodos.ListTodosFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/titleApp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp">
+    <data>
+        <variable
+            name="adapter"
+            type="el.ka.doit_v2.presentation.adapter.TodosAdapter" />
 
-        <TextView
-            android:id="@+id/tta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:text="@string/todo_list"
-            android:textColor="@color/mainColor"
-            android:textSize="28sp" />
+        <variable
+            name="viewModel"
+            type="el.ka.doit_v2.presentation.screens.listTodos.ListTodosViewModel" />
 
-        <ImageButton
-            android:id="@+id/deleteAllTodosBtn"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/field"
-            android:baselineAlignBottom="false"
-            android:src="@drawable/ic_baseline_exit_to_app_24" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/searchForm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleApp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/field"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
-
-        <EditText
-            android:id="@+id/searchFormInput"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:hint="@string/hint_search"
-            android:padding="3dp"
-            android:textColor="@color/gray2"
-            android:textColorHint="@color/gray2"
-            android:textSize="16sp" />
-
-        <ImageButton
-            android:id="@+id/searchFormBtn"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="5dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_search_24" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerToDoList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchForm"
-        android:layout_alignParentStart="true"
-        android:nestedScrollingEnabled="true"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/todo_item" />
+        <variable
+            name="master"
+            type="el.ka.doit_v2.presentation.screens.listTodos.ListTodosFragment" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/emptyTodo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchForm"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:visibility="gone">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".presentation.screens.listTodos.ListTodosFragment">
 
-        <ImageView
-            android:id="@+id/emptyImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/empty_gray" />
+        <LinearLayout
+            android:id="@+id/titleApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/emptyText"
+            <TextView
+                android:id="@+id/tta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:text="@string/todo_list"
+                android:textColor="@color/mainColor"
+                android:textSize="28sp" />
+
+            <ImageButton
+                android:id="@+id/deleteAllTodosBtn"
+                android:onClick="@{() -> master.clickOnDeleteAllTodos()}"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/field"
+                android:baselineAlignBottom="false"
+                android:src="@drawable/ic_baseline_exit_to_app_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/searchForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleApp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/field"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
+
+            <EditText
+                android:id="@+id/searchFormInput"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_search"
+                android:padding="3dp"
+                android:textColor="@color/gray2"
+                android:textColorHint="@color/gray2"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/searchFormBtn"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_search_24" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerToDoList"
+            android:layout_width="match_parent"
+            android:adapter="@{adapter}"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/searchForm"
+            android:layout_alignParentStart="true"
+            android:nestedScrollingEnabled="true"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/todo_item" />
+
+        <RelativeLayout
+            android:id="@+id/emptyTodo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/emptyImage"
+            android:layout_below="@+id/searchForm"
             android:layout_centerHorizontal="true"
-            android:text="@string/todo_list_empty"
-            android:textColor="@color/gray2"
-            android:textSize="18sp" />
+            android:layout_marginTop="50dp"
+            android:visibility="gone">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/empty_box_add_task"
-            android:visibility="gone"
-            android:layout_marginTop="15dp"
+            <ImageView
+                android:id="@+id/emptyImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/empty_gray" />
+
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emptyImage"
+                android:layout_centerHorizontal="true"
+                android:text="@string/todo_list_empty"
+                android:textColor="@color/gray2"
+                android:textSize="18sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/empty_box_add_task"
+                android:visibility="gone"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/emptyText"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> master.clickOnEmptyBoxAddTask()}"
+                android:text="@string/add_this_todo"
+                android:textAllCaps="false" />
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:onClick="@{() -> master.clickOnFab()}"
             android:layout_width="wrap_content"
-            android:layout_below="@id/emptyText"
             android:layout_height="wrap_content"
-            android:text="Add this todo"
-            android:textAllCaps="false" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/mainColor"
+            android:contentDescription="Add todo"
+            android:src="@drawable/ic_baseline_add_24" />
     </RelativeLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/mainColor"
-        android:contentDescription="Add todo"
-        android:src="@drawable/ic_baseline_add_24" />
-</RelativeLayout>
+</layout>

@@ -3,31 +3,61 @@ package el.ka.doit_v2.presentation.screens.listTodos
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import el.ka.doit_v2.R
+import el.ka.doit_v2.databinding.FragmentListTodosBinding
 import el.ka.doit_v2.domain.TodoModel
 import el.ka.doit_v2.presentation.adapter.TodosAdapter
 import el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment
 import kotlinx.android.synthetic.main.fragment_list_todos.*
 
-class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
-  private lateinit var adapter: TodosAdapter
-  private lateinit var viewModel: ListTodosViewModel
+class ListTodosFragment : Fragment() {
+  private lateinit var binding: FragmentListTodosBinding
+
+  private val adapter by lazy {
+    TodosAdapter(application = requireActivity().application, onDeleteTodo = { todoModel ->
+      viewModel.deleteTodo(todoModel)
+    }, onEditTodo = { todoModel ->
+      onEditTodo(todoModel)
+    }, onChangeTodo = { todoModel ->
+      viewModel.updateTodo(todoModel)
+    })
+  }
+  private val viewModel by lazy {
+    ViewModelProvider(this).get(ListTodosViewModel::class.java)
+  }
 
   private lateinit var filteredTodos: List<TodoModel>
   private lateinit var allTodos: List<TodoModel>
   private var filterString = ""
 
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+  ): View {
+    binding = FragmentListTodosBinding.inflate(inflater, container, false)
+    binding.apply {
+      lifecycleOwner = viewLifecycleOwner
+      viewModel = this@ListTodosFragment.viewModel
+      adapter = this@ListTodosFragment.adapter
+      master = this@ListTodosFragment
+    }
+    return binding.root
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    initViewModel()
-    initRecyclerView()
-    initButtons()
     initListenerForSearch()
+
+    viewModel.notes.observe(viewLifecycleOwner) { listTodos ->
+      allTodos = listTodos
+      filterTodos()
+    }
   }
 
   private fun initListenerForSearch() {
@@ -42,47 +72,16 @@ class ListTodosFragment : Fragment(R.layout.fragment_list_todos) {
     })
   }
 
-  private fun initViewModel() {
-    viewModel = ViewModelProvider(this).get(ListTodosViewModel::class.java)
+  fun clickOnFab() {
+    findNavController().navigate(R.id.action_listTodosFragment_to_editTodoFragment)
   }
 
-  private fun initButtons() {
-    this.fab.setOnClickListener {
-      findNavController().navigate(R.id.action_listTodosFragment_to_editTodoFragment)
-    }
-
-    this.deleteAllTodosBtn.setOnClickListener {
-      viewModel.deleteAllTodos()
-    }
-
-    this.empty_box_add_task.setOnClickListener {
-      viewModel.addTodo(TodoModel(text = filterString))
-    }
+  fun clickOnDeleteAllTodos() {
+    viewModel.deleteAllTodos()
   }
 
-  private fun initRecyclerView() {
-    adapter = TodosAdapter(
-      application = requireActivity().application,
-      onDeleteTodo = { todoModel ->
-        viewModel.deleteTodo(todoModel)
-      },
-      onEditTodo = { todoModel ->
-        onEditTodo(todoModel)
-      },
-      onChangeTodo = { todoModel ->
-        viewModel.updateTodo(todoModel)
-      }
-    )
-    this.recyclerToDoList.adapter = adapter
-
-    addObserverForTodos()
-  }
-
-  private fun addObserverForTodos() {
-    viewModel.notes.observe(viewLifecycleOwner) { listTodos ->
-      allTodos = listTodos
-      filterTodos()
-    }
+  fun clickOnEmptyBoxAddTask() {
+    viewModel.addTodo(TodoModel(text = filterString))
   }
 
   private fun filterTodos() {
