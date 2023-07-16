@@ -19,14 +19,27 @@ import kotlinx.android.synthetic.main.fragment_list_todos.*
 class ListTodosFragment : Fragment() {
   private lateinit var binding: FragmentListTodosBinding
 
+
+  private val todosAdapterListener by lazy {
+    object : TodosAdapter.Companion.Listener {
+      override fun onDeleteClick(todoModel: TodoModel) {
+        viewModel.deleteTodo(todoModel)
+      }
+
+      override fun onItemClick(todoModel: TodoModel) {
+        toEditTodo(todoModel)
+      }
+
+      override fun onBoxClick(todoModel: TodoModel, status: Boolean) {
+        viewModel.updateTodo(todoModel)
+      }
+    }
+  }
+
   private val adapter by lazy {
-    TodosAdapter(application = requireActivity().application, onDeleteTodo = { todoModel ->
-      viewModel.deleteTodo(todoModel)
-    }, onEditTodo = { todoModel ->
-      onEditTodo(todoModel)
-    }, onChangeTodo = { todoModel ->
-      viewModel.updateTodo(todoModel)
-    })
+    val adapter = TodosAdapter()
+    adapter.listener = todosAdapterListener
+    return@lazy adapter
   }
   private val viewModel by lazy {
     ViewModelProvider(this).get(ListTodosViewModel::class.java)
@@ -107,7 +120,7 @@ class ListTodosFragment : Fragment() {
     adapter.setTodos(currentTodos)
   }
 
-  private fun onEditTodo(todoModel: TodoModel) {
+  private fun toEditTodo(todoModel: TodoModel) {
     val bundle = Bundle()
     bundle.putSerializable(EditTodoFragment.TODO_KEY, todoModel)
     findNavController().navigate(R.id.action_listTodosFragment_to_editTodoFragment, bundle)
