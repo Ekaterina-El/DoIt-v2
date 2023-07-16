@@ -1,4 +1,4 @@
-package el.ka.doit_v2.model
+package el.ka.doit_v2.domain
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

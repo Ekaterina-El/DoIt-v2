@@ -1,8 +1,8 @@
-package el.ka.doit_v2.db.dao
+package el.ka.doit_v2.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import el.ka.doit_v2.model.TodoModel
+import el.ka.doit_v2.domain.TodoModel
 
 @Dao
 interface DoItDao {
@@ -16,7 +16,7 @@ interface DoItDao {
     fun getAllTodos(): LiveData<List<TodoModel>>
 
     @Update
-    suspend fun updateTodo(todoModel: TodoModel)
+    suspend fun edit(todoModel: TodoModel)
 
     @Query("DELETE FROM todos_table")
     suspend fun deleteAllTodos()
