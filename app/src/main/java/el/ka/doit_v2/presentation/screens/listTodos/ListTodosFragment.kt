@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import el.ka.doit_v2.R
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import el.ka.doit_v2.databinding.FragmentListTodosBinding
 import el.ka.doit_v2.domain.TodoModel
 import el.ka.doit_v2.presentation.adapter.TodoViewHolder
@@ -18,19 +19,37 @@ import el.ka.doit_v2.presentation.adapter.TodosAdapter
 class ListTodosFragment : Fragment() {
   private lateinit var binding: FragmentListTodosBinding
 
+  private val recyclerToDoCallback by lazy {
+    object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+      override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+      ): Boolean = false
+
+      override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        val position = viewHolder.adapterPosition
+
+        when (direction) {
+          ItemTouchHelper.LEFT -> adapter.deleteTodo(position)
+          ItemTouchHelper.RIGHT -> adapter.editTodo(position)
+        }
+      }
+    }
+  }
 
   private val todosAdapterListener by lazy {
     object : TodoViewHolder.Companion.Listener {
-      override fun onDeleteClick(todoModel: TodoModel) {
+      override fun onDelete(todoModel: TodoModel) {
         viewModel.deleteTodo(todoModel)
       }
 
-      override fun onItemClick(todoModel: TodoModel) {
+      override fun onEdit(todoModel: TodoModel) {
         toEditTodo(todoModel)
       }
 
       override fun onBoxClick(todoModel: TodoModel, status: Boolean) {
-        viewModel.updateTodo(todoModel)
+        viewModel.updateStatus(todoModel, status)
       }
     }
   }
@@ -63,11 +82,16 @@ class ListTodosFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     initListenerForSearch()
+    initRecyclerView()
 
     viewModel.notes.observe(viewLifecycleOwner) { listTodos ->
       allTodos = listTodos
       filterTodos()
     }
+  }
+
+  private fun initRecyclerView() {
+    ItemTouchHelper(recyclerToDoCallback).attachToRecyclerView(binding.recyclerToDoList)
   }
 
   private fun initListenerForSearch() {
@@ -85,10 +109,6 @@ class ListTodosFragment : Fragment() {
   fun clickOnFab() {
     val action = ListTodosFragmentDirections.actionListTodosFragmentToEditTodoFragment(null)
     findNavController().navigate(action)
-  }
-
-  fun clickOnDeleteAllTodos() {
-    viewModel.deleteAllTodos()
   }
 
   fun clickOnEmptyBoxAddTask() {

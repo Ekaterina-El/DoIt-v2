@@ -25,15 +25,9 @@ class ListTodosViewModel(application: Application) : AndroidViewModel(applicatio
     }
   }
 
-  fun updateTodo(todoModel: TodoModel) {
+  private fun updateTodo(todoModel: TodoModel) {
     viewModelScope.launch {
       editTodoUseCase(todoModel)
-    }
-  }
-
-  fun deleteAllTodos() {
-    viewModelScope.launch() {
-      deleteAllTodos()
     }
   }
 
@@ -41,5 +35,10 @@ class ListTodosViewModel(application: Application) : AndroidViewModel(applicatio
     viewModelScope.launch() {
       addTodoUseCase(todoModel)
     }
+  }
+
+  fun updateStatus(todoModel: TodoModel, status: Boolean) {
+    val todo = todoModel.copy(isDone = status)
+    updateTodo(todo)
   }
 }

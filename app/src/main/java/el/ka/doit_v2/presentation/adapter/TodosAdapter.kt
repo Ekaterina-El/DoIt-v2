@@ -31,4 +31,12 @@ class TodosAdapter(private val listener: TodoViewHolder.Companion.Listener? = nu
   fun setTodos(newTodos: List<TodoModel>) {
     submitList(newTodos)
   }
+
+  fun deleteTodo(position: Int) {
+    listener?.onDelete(getItem(position))
+  }
+
+  fun editTodo(position: Int) {
+    listener?.onEdit(getItem(position))
+  }
 }

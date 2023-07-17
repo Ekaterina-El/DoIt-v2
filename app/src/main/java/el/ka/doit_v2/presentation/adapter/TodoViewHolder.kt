@@ -12,8 +12,8 @@ class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHo
 
   fun onAttached(listener: Listener) {
     val todo = binding.todo!!
-    binding.editTask.setOnClickListener { listener.onItemClick(todo) }
-    binding.deleteTask.setOnClickListener { listener.onDeleteClick(todo) }
+    binding.editTask.setOnClickListener { listener.onEdit(todo) }
+//    binding.deleteTask.setOnClickListener { listener.onDeleteClick(todo) }
     binding.taskCheckbox.setOnCheckedChangeListener { _, status ->
       listener.onBoxClick(todo, status)
     }
@@ -21,13 +21,13 @@ class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHo
 
   fun onDetached() {
     binding.editTask.setOnClickListener(null)
-    binding.deleteTask.setOnClickListener(null)
+//    binding.deleteTask.setOnClickListener(null)
   }
 
   companion object {
     interface Listener {
-      fun onDeleteClick(todoModel: TodoModel)
-      fun onItemClick(todoModel: TodoModel)
+      fun onDelete(todoModel: TodoModel)
+      fun onEdit(todoModel: TodoModel)
       fun onBoxClick(todoModel: TodoModel, status: Boolean)
     }
 

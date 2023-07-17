@@ -13,17 +13,19 @@
   <androidx.cardview.widget.CardView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/app_padding"
+      android:background="?attr/selectableItemBackgroundBorderless"
       android:backgroundTint="@color/white"
+      android:clickable="true"
       android:paddingEnd="8dp"
       app:cardCornerRadius="4dp"
-      android:clickable="true"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      app:cardElevation="0dp">
+      app:cardElevation="4dp">
 
     <LinearLayout
         android:id="@+id/wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
       <View
@@ -34,37 +36,22 @@
 
       <CheckBox
           android:id="@+id/taskCheckbox"
-          android:text="@{todo.text}"
+          style="@style/checkbox"
           android:checked="@{todo.done}"
-          tools:text="@string/example_text_task_item"
-          style="@style/checkbox" />
+          android:text="@{todo.text}"
+          tools:text="@string/example_text_task_item" />
 
-      <RelativeLayout
-          android:layout_width="40dp"
-          android:layout_height="match_parent"
-          android:layout_marginStart="10dp"
+      <androidx.cardview.widget.CardView
+          android:id="@+id/editTask"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:layout_marginEnd="10dp"
-          android:paddingVertical="8dp">
+          android:clickable="true"
+          android:foreground="?attr/selectableItemBackgroundBorderless"
+          app:cardCornerRadius="30dp"
+          app:cardElevation="0dp">
+      </androidx.cardview.widget.CardView>
 
-        <ImageButton
-            android:id="@+id/editTask"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_edit" />
-
-        <ImageButton
-            android:id="@+id/deleteTask"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_delete" />
-
-      </RelativeLayout>
     </LinearLayout>
 
   </androidx.cardview.widget.CardView>
