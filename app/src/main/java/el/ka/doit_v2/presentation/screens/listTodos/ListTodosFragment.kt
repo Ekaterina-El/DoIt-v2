@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import el.ka.doit_v2.R
 import el.ka.doit_v2.databinding.FragmentListTodosBinding
 import el.ka.doit_v2.domain.TodoModel
+import el.ka.doit_v2.presentation.adapter.ItemDecorator
 import el.ka.doit_v2.presentation.adapter.TodoViewHolder
 import el.ka.doit_v2.presentation.adapter.TodosAdapter
 
@@ -92,6 +94,12 @@ class ListTodosFragment : Fragment() {
 
   private fun initRecyclerView() {
     ItemTouchHelper(recyclerToDoCallback).attachToRecyclerView(binding.recyclerToDoList)
+    binding.recyclerToDoList.addItemDecoration(
+      ItemDecorator(
+        resources.getDimensionPixelSize(R.dimen.todo_margin),
+        resources.getDimensionPixelSize(R.dimen.app_padding)
+      )
+    )
   }
 
   private fun initListenerForSearch() {
