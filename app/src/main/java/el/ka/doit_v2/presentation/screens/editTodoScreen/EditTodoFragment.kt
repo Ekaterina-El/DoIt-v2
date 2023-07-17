@@ -54,11 +54,7 @@ class EditTodoFragment : Fragment() {
   }
 
   private fun findCurrentTodoModel() {
-    val argument = arguments?.getSerializable(TODO_KEY)
-    argument?.let { viewModel.setTodoToEdit(it as TodoModel) }
-  }
-
-  companion object {
-    const val TODO_KEY = "todo"
+    val todo = EditTodoFragmentArgs.fromBundle(requireArguments()).todo
+    viewModel.setTodoToEdit(todo)
   }
 }

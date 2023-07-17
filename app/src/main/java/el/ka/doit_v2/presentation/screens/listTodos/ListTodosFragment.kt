@@ -119,8 +119,7 @@ class ListTodosFragment : Fragment() {
   }
 
   private fun toEditTodo(todoModel: TodoModel) {
-    val bundle = Bundle()
-    bundle.putSerializable(EditTodoFragment.TODO_KEY, todoModel)
-    findNavController().navigate(R.id.action_listTodosFragment_to_editTodoFragment, bundle)
+    val action = ListTodosFragmentDirections.actionListTodosFragmentToEditTodoFragment(todoModel)
+    findNavController().navigate(action)
   }
 }

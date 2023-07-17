@@ -27,5 +27,9 @@
         android:id="@+id/editTodoFragment"
         android:name="el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment"
         android:label="fragment_edit_todo"
-        tools:layout="@layout/fragment_edit_todo" />
+        tools:layout="@layout/fragment_edit_todo" >
+        <argument
+            android:name="todo"
+            app:argType="el.ka.doit_v2.domain.TodoModel" />
+    </fragment>
 </navigation>
