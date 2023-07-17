@@ -13,7 +13,7 @@ class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHo
   }
 
   fun onAttached(listener: Listener) {
-    val todo = binding.todo
+    val todo = binding.todo!!
     binding.editTask.setOnClickListener { listener.onItemClick(todo) }
     binding.deleteTask.setOnClickListener { listener.onDeleteClick(todo) }
     binding.taskCheckbox.setOnCheckedChangeListener { _, status ->

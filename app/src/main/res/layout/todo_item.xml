@@ -29,7 +29,6 @@
       <View
           android:layout_width="15dp"
           android:layout_height="match_parent"
-          app:todoColor="@{todo.colorNumber}"
           tools:background="@color/c1" />
 
       <CheckBox

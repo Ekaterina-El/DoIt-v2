@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import el.ka.doit_v2.R
 import el.ka.doit_v2.databinding.FragmentListTodosBinding
 import el.ka.doit_v2.domain.TodoModel
+import el.ka.doit_v2.presentation.adapter.TodoViewHolder
 import el.ka.doit_v2.presentation.adapter.TodosAdapter
 import el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment
 import kotlinx.android.synthetic.main.fragment_list_todos.*
@@ -21,7 +22,7 @@ class ListTodosFragment : Fragment() {
 
 
   private val todosAdapterListener by lazy {
-    object : TodosAdapter.Companion.Listener {
+    object : TodoViewHolder.Companion.Listener {
       override fun onDeleteClick(todoModel: TodoModel) {
         viewModel.deleteTodo(todoModel)
       }
@@ -37,9 +38,7 @@ class ListTodosFragment : Fragment() {
   }
 
   private val adapter by lazy {
-    val adapter = TodosAdapter()
-    adapter.listener = todosAdapterListener
-    return@lazy adapter
+    TodosAdapter(todosAdapterListener)
   }
   private val viewModel by lazy {
     ViewModelProvider(this).get(ListTodosViewModel::class.java)
