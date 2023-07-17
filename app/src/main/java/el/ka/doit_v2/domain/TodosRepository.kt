@@ -7,5 +7,4 @@ interface TodosRepository {
   suspend fun insert(todoModel: TodoModel)
   suspend fun delete(todoModel: TodoModel)
   suspend fun edit(todoModel: TodoModel)
-  suspend fun deleteAll()
 }

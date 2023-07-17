@@ -4,10 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import el.ka.doit_v2.data.db.dao.DoItDao
 import el.ka.doit_v2.domain.TodoModel
 
-@Database(entities = [TodoModel::class], version = 2)
+@Database(entities = [TodoDBModel::class], version = 2)
 abstract class LocalDatabase: RoomDatabase() {
     abstract fun getDoItDao(): DoItDao
 

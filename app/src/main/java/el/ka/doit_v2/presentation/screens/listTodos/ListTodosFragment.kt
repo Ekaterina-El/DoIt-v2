@@ -11,12 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import el.ka.doit_v2.DoItApplication
 import el.ka.doit_v2.R
 import el.ka.doit_v2.databinding.FragmentListTodosBinding
 import el.ka.doit_v2.domain.TodoModel
+import el.ka.doit_v2.presentation.ViewModelFactory
 import el.ka.doit_v2.presentation.adapter.ItemDecorator
 import el.ka.doit_v2.presentation.adapter.TodoViewHolder
 import el.ka.doit_v2.presentation.adapter.TodosAdapter
+import javax.inject.Inject
 
 class ListTodosFragment : Fragment() {
   private lateinit var binding: FragmentListTodosBinding
@@ -59,13 +62,25 @@ class ListTodosFragment : Fragment() {
   private val adapter by lazy {
     TodosAdapter(todosAdapterListener)
   }
+
+  @Inject
+  lateinit var viewModelFactory: ViewModelFactory
+  private val component by lazy {
+    (requireActivity().application as DoItApplication).component.getFragmentComponentFactory().create()
+  }
+
   private val viewModel by lazy {
-    ViewModelProvider(this).get(ListTodosViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory)[ListTodosViewModel::class.java]
   }
 
   private lateinit var filteredTodos: List<TodoModel>
   private lateinit var allTodos: List<TodoModel>
   private var filterString = ""
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    component.inject(this)
+  }
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

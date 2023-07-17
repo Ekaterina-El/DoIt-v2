@@ -1,18 +1,20 @@
 package el.ka.doit_v2.presentation.screens.editTodo
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import el.ka.doit_v2.data.TodosRepositoryImpl
-import el.ka.doit_v2.data.db.LocalDatabase
 import el.ka.doit_v2.domain.EditTodoUseCase
 import el.ka.doit_v2.domain.InsertTodoUseCase
 import el.ka.doit_v2.domain.TodoModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EditTodoViewModel(application: Application) : AndroidViewModel(application) {
+class EditTodoViewModel @Inject constructor(
+  private val editTodoUseCase: EditTodoUseCase,
+  private val addTodoUseCase: InsertTodoUseCase
+) : ViewModel() {
+
   private var currentTodoModel: TodoModel? = null
   val todoText = MutableLiveData("")
 
@@ -21,11 +23,6 @@ class EditTodoViewModel(application: Application) : AndroidViewModel(application
 
   private val _onSaved = MutableLiveData(false)
   val onSaved: LiveData<Boolean> = _onSaved
-
-  private val dao = LocalDatabase.getInstance(application).getDoItDao()
-  private val repo = TodosRepositoryImpl(dao)
-  private val editTodoUseCase = EditTodoUseCase(repo)
-  private val addTodoUseCase = InsertTodoUseCase(repo)
 
   fun setColorNumber(number: Int) {
     _colorNumber.value = number

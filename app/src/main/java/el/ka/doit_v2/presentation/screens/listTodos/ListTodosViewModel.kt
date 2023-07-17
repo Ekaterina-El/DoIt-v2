@@ -1,22 +1,21 @@
 package el.ka.doit_v2.presentation.screens.listTodos
 
-import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import el.ka.doit_v2.data.TodosRepositoryImpl
 import el.ka.doit_v2.data.db.LocalDatabase
 import el.ka.doit_v2.domain.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ListTodosViewModel(application: Application) : AndroidViewModel(application) {
-  val dao = LocalDatabase.getInstance(application).getDoItDao()
-  private val repo = TodosRepositoryImpl(dao)
-  private val getAllUseCase = GetTodosUseCase(repo)
-  private val editTodoUseCase = EditTodoUseCase(repo)
-  private val deleteTodoUseCase = DeleteTodoUseCase(repo)
-  private val addTodoUseCase = InsertTodoUseCase(repo)
-
+class ListTodosViewModel @Inject constructor(
+  private val getAllUseCase: GetTodosUseCase,
+  private val editTodoUseCase: EditTodoUseCase,
+  private val deleteTodoUseCase: DeleteTodoUseCase,
+  private val addTodoUseCase: InsertTodoUseCase,
+) : ViewModel() {
   val notes: LiveData<List<TodoModel>> = getAllUseCase()
 
   fun deleteTodo(todoModel: TodoModel) {
@@ -32,7 +31,7 @@ class ListTodosViewModel(application: Application) : AndroidViewModel(applicatio
   }
 
   fun addTodo(todoModel: TodoModel) {
-    viewModelScope.launch() {
+    viewModelScope.launch {
       addTodoUseCase(todoModel)
     }
   }
