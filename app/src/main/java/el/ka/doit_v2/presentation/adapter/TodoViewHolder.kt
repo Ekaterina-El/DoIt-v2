@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import el.ka.doit_v2.R
 import el.ka.doit_v2.databinding.TodoItemBinding
 import el.ka.doit_v2.domain.TodoModel
-import kotlinx.android.synthetic.main.todo_item.view.*
 
 class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
   fun bind(todoModel: TodoModel) {

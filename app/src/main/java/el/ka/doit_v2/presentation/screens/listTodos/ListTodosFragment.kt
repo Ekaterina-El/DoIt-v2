@@ -15,7 +15,6 @@ import el.ka.doit_v2.domain.TodoModel
 import el.ka.doit_v2.presentation.adapter.TodoViewHolder
 import el.ka.doit_v2.presentation.adapter.TodosAdapter
 import el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment
-import kotlinx.android.synthetic.main.fragment_list_todos.*
 
 class ListTodosFragment : Fragment() {
   private lateinit var binding: FragmentListTodosBinding
@@ -73,7 +72,7 @@ class ListTodosFragment : Fragment() {
   }
 
   private fun initListenerForSearch() {
-    this.searchFormInput.addTextChangedListener(object : TextWatcher {
+    binding.searchFormInput.addTextChangedListener(object : TextWatcher {
       override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
       override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
         filterString = p0.toString()
@@ -106,16 +105,16 @@ class ListTodosFragment : Fragment() {
       currentTodos = filteredTodos
 
       if (filteredTodos.isEmpty()) {
-        this.empty_box_add_task.visibility = View.VISIBLE
+        binding.emptyBoxAddTask.visibility = View.VISIBLE
       } else {
-        this.empty_box_add_task.visibility = View.INVISIBLE
+        binding.emptyBoxAddTask.visibility = View.INVISIBLE
       }
     } else {
       currentTodos = allTodos
-      this.empty_box_add_task.visibility = View.INVISIBLE
+      binding.emptyBoxAddTask.visibility = View.INVISIBLE
     }
 
-    this.emptyTodo.visibility = if (currentTodos.isEmpty()) View.VISIBLE else View.INVISIBLE
+    binding.emptyTodo.visibility = if (currentTodos.isEmpty()) View.VISIBLE else View.INVISIBLE
     adapter.setTodos(currentTodos)
   }
 

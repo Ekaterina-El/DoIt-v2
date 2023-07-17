@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import el.ka.doit_v2.R
 import el.ka.doit_v2.databinding.FragmentEditTodoBinding
 import el.ka.doit_v2.domain.TodoModel
-import kotlinx.android.synthetic.main.fragment_edit_todo.*
 
 class EditTodoFragment : Fragment() {
   private lateinit var binding: FragmentEditTodoBinding
