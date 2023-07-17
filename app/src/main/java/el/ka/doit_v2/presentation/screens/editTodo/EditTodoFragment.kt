@@ -30,7 +30,7 @@ class EditTodoFragment : Fragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    val binding = FragmentEditTodoBinding.inflate(inflater, container, false)
+    binding = FragmentEditTodoBinding.inflate(inflater, container, false)
     component.inject(this)
     binding.apply {
       lifecycleOwner = viewLifecycleOwner
