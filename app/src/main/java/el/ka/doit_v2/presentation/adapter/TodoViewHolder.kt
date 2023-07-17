@@ -1,31 +1,46 @@
 package el.ka.doit_v2.presentation.adapter
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import el.ka.doit_v2.R
+import el.ka.doit_v2.databinding.TodoItemBinding
 import el.ka.doit_v2.domain.TodoModel
 import kotlinx.android.synthetic.main.todo_item.view.*
 
-class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-  private lateinit var todo: TodoModel
-
+class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
   fun bind(todoModel: TodoModel) {
-    todo = todoModel
-    itemView.taskCheckbox.text = todoModel.text
-    itemView.taskCheckbox.isChecked = todoModel.isDone
+    binding.todo = todoModel
 //    itemView.wrapper.setBackgroundColor(application.getColor(TodosAdapter.colors[todos[position].colorNumber]))
   }
 
-  fun onAttached(listener: TodosAdapter.Companion.Listener) {
-    itemView.editTask.setOnClickListener { listener.onItemClick(todo) }
-    itemView.deleteTask.setOnClickListener { listener.onDeleteClick(todo) }
-    itemView.taskCheckbox.setOnCheckedChangeListener { _, status ->
+  fun onAttached(listener: Listener) {
+    val todo = binding.todo
+    binding.editTask.setOnClickListener { listener.onItemClick(todo) }
+    binding.deleteTask.setOnClickListener { listener.onDeleteClick(todo) }
+    binding.taskCheckbox.setOnCheckedChangeListener { _, status ->
       listener.onBoxClick(todo, status)
     }
   }
 
   fun onDetached() {
-    itemView.editTask.setOnClickListener(null)
-    itemView.deleteTask.setOnClickListener(null)
+    binding.editTask.setOnClickListener(null)
+    binding.deleteTask.setOnClickListener(null)
+  }
+
+  companion object {
+    interface Listener {
+      fun onDeleteClick(todoModel: TodoModel)
+      fun onItemClick(todoModel: TodoModel)
+      fun onBoxClick(todoModel: TodoModel, status: Boolean)
+    }
+
+    val colors = listOf(
+      R.color.c0,
+      R.color.c1,
+      R.color.c2,
+      R.color.c3,
+      R.color.c4,
+      R.color.c5,
+    )
   }
 
 }
