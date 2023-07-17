@@ -8,7 +8,6 @@ import el.ka.doit_v2.domain.TodoModel
 class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
   fun bind(todoModel: TodoModel) {
     binding.todo = todoModel
-//    itemView.wrapper.setBackgroundColor(application.getColor(TodosAdapter.colors[todos[position].colorNumber]))
   }
 
   fun onAttached(listener: Listener) {

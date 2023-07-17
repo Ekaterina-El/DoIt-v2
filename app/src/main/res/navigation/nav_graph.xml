@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="el.ka.doit_v2.presentation.screens.splashScreen.SplashFragment"
+        android:name="el.ka.doit_v2.presentation.screens.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -25,11 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/editTodoFragment"
-        android:name="el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment"
+        android:name="el.ka.doit_v2.presentation.screens.editTodo.EditTodoFragment"
         android:label="fragment_edit_todo"
         tools:layout="@layout/fragment_edit_todo" >
         <argument
             android:name="todo"
-            app:argType="el.ka.doit_v2.domain.TodoModel" />
+            app:argType="el.ka.doit_v2.domain.TodoModel"
+            app:nullable="true" />
     </fragment>
 </navigation>

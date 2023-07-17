@@ -1,4 +1,4 @@
-package el.ka.doit_v2.presentation.screens.splashScreen
+package el.ka.doit_v2.presentation.screens.splash
 
 import android.os.Bundle
 import android.view.View
@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 class SplashFragment : Fragment(R.layout.fragment_splash) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-
     changeScreen()
   }
 

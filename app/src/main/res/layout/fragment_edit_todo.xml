@@ -7,18 +7,18 @@
 
     <variable
         name="master"
-        type="el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment" />
+        type="el.ka.doit_v2.presentation.screens.editTodo.EditTodoFragment" />
 
     <variable
         name="viewModel"
-        type="el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoViewModel" />
+        type="el.ka.doit_v2.presentation.screens.editTodo.EditTodoViewModel" />
   </data>
 
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@color/mainColor"
-      tools:context=".presentation.screens.editTodoScreen.EditTodoFragment">
+      tools:context=".presentation.screens.editTodo.EditTodoFragment">
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -54,6 +54,7 @@
             android:src="@drawable/done_all" />
 
         <TextView
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/logo"
@@ -64,18 +65,17 @@
       </RelativeLayout>
 
       <EditText
+          style="@style/text"
           android:id="@+id/taskText"
           android:layout_width="match_parent"
-          android:layout_height="50dp"
+          android:layout_height="wrap_content"
           android:text="@={viewModel.todoText}"
           android:layout_below="@+id/logoWrapper"
-          android:background="@drawable/field"
           android:hint="@string/hint_new_task"
           android:paddingStart="20dp"
           android:paddingEnd="20dp"
           android:textColor="@color/mainColor"
-          android:textColorHint="@color/gray"
-          android:textSize="18sp" />
+          android:textColorHint="@color/gray" />
 
       <com.google.android.material.button.MaterialButton
           android:id="@+id/saveTaskBtn"
@@ -84,7 +84,7 @@
           android:layout_below="@+id/taskText"
           android:layout_marginHorizontal="40dp"
           android:layout_marginTop="20dp"
-          android:background="@drawable/field"
+          style="@style/text"
           android:onClick="@{() -> viewModel.save()}"
           android:text="@string/new_task_save"
           android:textAllCaps="false"

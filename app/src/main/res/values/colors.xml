@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">@android:color/holo_green_dark</color>
-    <color name="purple_700">@android:color/holo_green_dark</color>
+    <color name="primary">@android:color/holo_green_dark</color>
+    <color name="primary_variant">@android:color/holo_green_dark</color>
     <color name="teal_200">@color/gray</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">@color/white</color>
@@ -12,8 +12,23 @@
     <color name="white2">#F5FBE7</color>
     <color name="mainColor">@android:color/holo_green_dark</color>
     <color name="gray">#D3DFBA</color>
-    <color name="gray2">#B5C397</color>
     <color name="preloader">#990000</color>
+    <color name="gray2">#B5C397</color>
+
+    <color name="secondary">#EEEEEC</color>
+    <color name="on_secondary">#ACACAA</color>
+    <color name="on_secondary_variant">#CFCFCD</color>
+    <color name="text_color">#333333</color>
+
+
+    <array name="todoColors">
+        <item>#FFEA34</item>
+        <item>#8BC34A</item>
+        <item>#FF68DE</item>
+        <item>#D364FC</item>
+        <item>#00BCD4</item>
+        <item>#DADADA</item>
+    </array>
 
     <color name="c0">#FFEA34</color>
     <color name="c1">#8BC34A</color>

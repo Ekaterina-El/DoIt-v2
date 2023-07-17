@@ -1,4 +1,4 @@
-package el.ka.doit_v2.presentation.screens.editTodoScreen
+package el.ka.doit_v2.presentation.screens.editTodo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import el.ka.doit_v2.databinding.FragmentEditTodoBinding
-import el.ka.doit_v2.domain.TodoModel
 
 class EditTodoFragment : Fragment() {
   private lateinit var binding: FragmentEditTodoBinding
@@ -55,6 +54,6 @@ class EditTodoFragment : Fragment() {
 
   private fun findCurrentTodoModel() {
     val todo = EditTodoFragmentArgs.fromBundle(requireArguments()).todo
-    viewModel.setTodoToEdit(todo)
+    todo?.let {viewModel.setTodoToEdit(todo) }
   }
 }

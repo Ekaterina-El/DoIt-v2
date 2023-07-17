@@ -1,16 +1,21 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainColor"
-    tools:context=".presentation.screens.splashScreen.SplashFragment">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    tools:context=".presentation.screens.splash.SplashFragment">
 
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/done_all"
-        android:layout_centerInParent="true"
-        />
+        app:tint="@color/primary" />
 
-</RelativeLayout>
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+</LinearLayout>

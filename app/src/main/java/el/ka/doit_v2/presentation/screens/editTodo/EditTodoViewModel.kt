@@ -1,4 +1,4 @@
-package el.ka.doit_v2.presentation.screens.editTodoScreen
+package el.ka.doit_v2.presentation.screens.editTodo
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

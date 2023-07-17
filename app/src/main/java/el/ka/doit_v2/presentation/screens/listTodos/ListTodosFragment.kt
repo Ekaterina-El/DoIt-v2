@@ -14,7 +14,6 @@ import el.ka.doit_v2.databinding.FragmentListTodosBinding
 import el.ka.doit_v2.domain.TodoModel
 import el.ka.doit_v2.presentation.adapter.TodoViewHolder
 import el.ka.doit_v2.presentation.adapter.TodosAdapter
-import el.ka.doit_v2.presentation.screens.editTodoScreen.EditTodoFragment
 
 class ListTodosFragment : Fragment() {
   private lateinit var binding: FragmentListTodosBinding
@@ -84,7 +83,8 @@ class ListTodosFragment : Fragment() {
   }
 
   fun clickOnFab() {
-    findNavController().navigate(R.id.action_listTodosFragment_to_editTodoFragment)
+    val action = ListTodosFragmentDirections.actionListTodosFragmentToEditTodoFragment(null)
+    findNavController().navigate(action)
   }
 
   fun clickOnDeleteAllTodos() {
